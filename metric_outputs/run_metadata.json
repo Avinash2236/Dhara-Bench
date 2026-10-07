@@ -1,0 +1,36 @@
+{
+  "status": "complete",
+  "evaluation_json_sha256": "5519646a881c859a9b6a838d650f3dd06a40256d4f3e8e14ef6d73e09302e1ee",
+  "corpus_file_sha256": "4459b92f0d9da18cc7807f23f410932a8c8e6caf09e780165bfd79662637e165",
+  "run_sha256": "567c051b6169d1db9c3594e121c9f1a2d3b65be79af757e3fb465338e02ded50",
+  "bm25_k1": 0.9,
+  "bm25_b": 0.4,
+  "retrieval_depth": 1000,
+  "evaluation_cutoffs": [
+    3,
+    8,
+    10,
+    20
+  ],
+  "mrr_depth": 20,
+  "metric_columns": [
+    "mrr",
+    "precision@3",
+    "precision@8",
+    "precision@10",
+    "precision@20",
+    "recall@3",
+    "recall@8",
+    "recall@10",
+    "recall@20",
+    "f1@3",
+    "f1@8",
+    "f1@10",
+    "f1@20",
+    "ndcg@3",
+    "ndcg@8",
+    "ndcg@10",
+    "ndcg@20"
+  ],
+  "evaluated_queries": 325
+}

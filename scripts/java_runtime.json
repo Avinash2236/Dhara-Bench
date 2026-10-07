@@ -1,0 +1,21 @@
+{
+  "availability_type": "CA",
+  "distro_version": [
+    21,
+    44,
+    17,
+    0
+  ],
+  "download_url": "https://cdn.azul.com/zulu/bin/zulu21.44.17-ca-jdk21.0.8-linux_x64.tar.gz",
+  "java_version": [
+    21,
+    0,
+    8
+  ],
+  "latest": false,
+  "name": "zulu21.44.17-ca-jdk21.0.8-linux_x64.tar.gz",
+  "openjdk_build_number": 9,
+  "package_uuid": "5e5dcd0a-1358-476e-ae9a-bc4cf3e37405",
+  "product": "zulu",
+  "archive_sha256": "63f56bbb46958cf57352fba08f2755e0953799195e5545acc0c8a92920beff1e"
+}
