@@ -1,6 +1,6 @@
 # Dhara-Bench
 
-Indian Knowledge Systems evidence-retrieval benchmark: 60,121 corpus chunks, 325 questions, and 7,384 gold evidence links.
+Indian Knowledge Systems evidence-retrieval benchmark: 60,121 corpus chunks, 325 questions, and 7,813 gold evidence links.
 
 ## Files
 

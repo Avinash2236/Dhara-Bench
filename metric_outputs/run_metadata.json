@@ -1,8 +1,11 @@
 {
   "status": "complete",
-  "evaluation_json_sha256": "5519646a881c859a9b6a838d650f3dd06a40256d4f3e8e14ef6d73e09302e1ee",
+  "started_utc": "2026-10-10T11:29:20.877860+00:00",
   "corpus_file_sha256": "4459b92f0d9da18cc7807f23f410932a8c8e6caf09e780165bfd79662637e165",
-  "run_sha256": "567c051b6169d1db9c3594e121c9f1a2d3b65be79af757e3fb465338e02ded50",
+  "collection_sha256": "9c45b57b20f23ad0878a9fae637b1fe2aae8e80d6a91b486a39e06e8f59e8a1c",
+  "python_version": "3.12.2",
+  "pyserini_version": "0.44.0",
+  "git_commit": "def6896c304a467d47142e20c4b1e5a08f1cfe84",
   "bm25_k1": 0.9,
   "bm25_b": 0.4,
   "retrieval_depth": 1000,
@@ -12,6 +15,86 @@
     10,
     20
   ],
+  "number_of_queries": 325,
+  "number_of_corpus_chunks": 60121,
+  "query_sanitization": "None. Exact workbook string passed to canonical BagOfWordsQueryGenerator; analyzer tokenization, English stopword removal, and Porter stemming only.",
+  "indexed_content": "Exact chunk text only; canonical stringified corpus ID is a document identifier, not a retrieval term. No ref or source metadata.",
+  "bootstrap": {
+    "resamples": 10000,
+    "seed": 42,
+    "unit": "question",
+    "interval": "percentile 2.5/97.5, NumPy linear quantiles",
+    "rng": "numpy.random.default_rng(42), reset for each scope; batches of 100"
+  },
+  "relevance_interpretation": "Binary relevance relative to declared expert gold judgments. Unannotated retrieved text is not necessarily semantically irrelevant.",
+  "parameter_selection": "Fixed a priori; no evaluation-driven tuning.",
+  "existing_corpus_artifacts": "Corpus retained without filtering or deduplication; gold annotations follow frozen_eval_v2 (Oct9 update).",
+  "java_version": "openjdk version \"21.0.8\" 2025-07-15 LTS\nOpenJDK Runtime Environment Zulu21.44+17-CA (build 21.0.8+9-LTS)\nOpenJDK 64-Bit Server VM Zulu21.44+17-CA (build 21.0.8+9-LTS, mixed mode, sharing)",
+  "lucene_version": "9.9.1",
+  "anserini_jar": "anserini-0.39.0-fatjar.jar",
+  "anserini_jar_sha256": "02e06f2f112803aeee9cb0a577b2e04edfa75a1318746a7fa5b6f802b2c6b14f",
+  "anserini_manifest": "Manifest-Version: 1.0\r\nCreated-By: Maven JAR Plugin 3.3.0\r\nBuild-Jdk-Spec: 21\r\nMulti-Release: true\r\n\r\n",
+  "anserini_lucene_maven_properties": {
+    "META-INF/maven/io.anserini/anserini/pom.properties": "artifactId=anserini\ngroupId=io.anserini\nversion=0.39.0\n"
+  },
+  "index_configuration": {
+    "collection": "JsonCollection",
+    "generator": "DefaultLuceneDocumentGenerator",
+    "threads": 1,
+    "analyzer": "io.anserini.analysis.DefaultEnglishAnalyzer",
+    "stemmer": "porter",
+    "stopwords": "Anserini built-in default English stop set",
+    "keepStopwords": false,
+    "storePositions": true,
+    "storeDocvectors": true,
+    "storeRaw": true,
+    "search_field": "contents"
+  },
+  "retrieval_api": "pyserini.pyclass.autoclass(io.anserini.search.SimpleSearcher); canonical Java implementation used by LuceneSearcher",
+  "query_generator": "io.anserini.search.query.BagOfWordsQueryGenerator",
+  "tie_breaking": "Canonical Anserini SimpleSearcher score order with document-ID tie breaking; no Python reordering.",
+  "package_versions": {
+    "pyserini": "0.44.0",
+    "pyjnius": "1.7.0",
+    "numpy": "2.2.6",
+    "pandas": "2.2.3",
+    "matplotlib": "3.9.3",
+    "openpyxl": "3.1.5"
+  },
+  "run_sha256": "567c051b6169d1db9c3594e121c9f1a2d3b65be79af757e3fb465338e02ded50",
+  "queries_with_fewer_than_1000_results": 6,
+  "short_run_policy": "Return up to 1000 matching documents; do not fabricate or pad zero-score documents. Precision denominator remains k.",
+  "aggregation": "Unweighted macro mean over questions; per-query F1 is averaged, not F1 of macro precision/recall.",
+  "no_gold_hit_top10": 161,
+  "no_gold_hit_top100": 105,
+  "rank1_gold_hits": 75,
+  "evaluated_queries": 325,
+  "completed_utc": "2026-10-10T11:29:51.986386+00:00",
+  "final_checks": {
+    "queries": 325,
+    "run_query_coverage": true,
+    "unique_document_ids_per_query": true,
+    "strictly_increasing_ranks": true,
+    "bounded_metrics": true,
+    "nondecreasing_recall": true,
+    "ndcg_bounded": true,
+    "latex_finite": true,
+    "figures_nonempty": true,
+    "csvs_read_back": 12,
+    "inputs_unchanged": true
+  },
+  "reproducibility_check": {
+    "fresh_index_rebuild": true,
+    "identical_file_sha256": {
+      "run_bm25_top1000.trec": "567c051b6169d1db9c3594e121c9f1a2d3b65be79af757e3fb465338e02ded50",
+      "per_query_metrics.csv": "483ca0868c63e33b983cbfa819a6ceca8f5559ffa128ce63da9dfeb503574155",
+      "overall_metrics.csv": "72c1262081c44748aa32e93a259b660ddf6cf9abbdfa2ba9c2779d8dd02231a8",
+      "category_metrics.csv": "e6800ad16004430f07a388afb16c431f177e9fb7379766b47ec82178bda61055",
+      "overall_bootstrap_ci.csv": "d55cd6dc75d82ee84012efb6f1593ca2c1238bcec30e4c3211bab32d34b66a93",
+      "category_bootstrap_ci.csv": "021aafb4376a4273277d341e8fdc0e41b7815e258a2ae3c5cd22660d8ff1361d"
+    },
+    "result": "byte-identical run, per-query metrics, aggregates, and bootstrap intervals"
+  },
   "mrr_depth": 20,
   "metric_columns": [
     "mrr",
@@ -32,5 +115,8 @@
     "ndcg@10",
     "ndcg@20"
   ],
-  "evaluated_queries": 325
+  "evaluation_protocol": "metrics_updated top-20 ranking convention",
+  "evaluation_json_sha256": "92762c65cbe1229299c3473d024900facfcfd6c1c6b1887f0dcb45fcbea24bc3",
+  "annotation_version": "frozen_eval_v2",
+  "retrieval_provenance": "Rankings from the local canonical BM25 run; package evaluation independently recomputed against its JSON dataset."
 }
