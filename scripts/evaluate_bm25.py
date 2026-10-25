@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from collections import defaultdict
+from datetime import datetime, timezone
 import numpy as np
 import pandas as pd
 from bm25_common import *
@@ -73,10 +74,60 @@ def main():
                        ('category_bootstrap_ci',category_ci),('all_metrics_by_cutoff',long_all),
                        ('all_category_metrics_by_cutoff',long_cat)]:
         pd.DataFrame(data).to_csv(OUT / f'{name}.csv',index=False)
-    metadata_update(status='complete', evaluation_cutoffs=CUTOFFS, mrr_depth=MRR_DEPTH,
-                    metric_columns=columns, evaluated_queries=len(per))
+    evaluate_complete_evidence(queries, run)
+    current = json.loads((OUT / 'run_metadata.json').read_text())
+    if 'retrieval_completed_utc' not in current:
+        current['retrieval_completed_utc'] = current.get('completed_utc')
+    # Earlier canonical-run checks describe retrieval provenance, not this evaluation.
+    for key in ('reproducibility_check', 'final_checks'):
+        if key in current:
+            current.setdefault('historical_run_checks', {})[key] = current.pop(key)
+    dump(OUT / 'run_metadata.json', current)
+    metadata_update(status='complete', annotation_version='frozen_eval_v3', evaluation_cutoffs=CUTOFFS, mrr_depth=MRR_DEPTH,
+                    metric_columns=columns, evaluated_queries=len(per),
+                    completed_utc=datetime.now(timezone.utc).isoformat(),
+                    existing_corpus_artifacts='Corpus retained without filtering or deduplication; frozen_eval_v3 uses current conjugate unions for T06/T07 conventional gold.',
+                    conventional_gold_policy='T06/T07: deduplicated union of current conjugate groups. Other categories: reviewed gold.',
+                    no_gold_hit_top10=int((per.gold_hits_at_10 == 0).sum()),
+                    no_gold_hit_top100=int((per.gold_hits_at_100 == 0).sum()),
+                    rank1_gold_hits=int((per.gold_hits_at_1 == 1).sum()),
+                    script_sha256={path.name: sha(path) for path in sorted((BASE/'scripts').iterdir()) if path.suffix in ('.py', '.sh')},
+                    metric_output_sha256={path.name: sha(path) for path in sorted(OUT.glob('*.csv'))})
     print(pd.DataFrame(overall).to_string(index=False))
     print(f'Saved metrics to {OUT}')
+
+
+def evaluate_complete_evidence(queries, run):
+    rows = []
+    for q in queries:
+        if q['category'] not in ('T06', 'T07'):
+            continue
+        groups = q['conjugate_groups']
+        rows.append({'query_id': q['query_id'], 'category': q['category_label'],
+                     'question': q['question'], 'evaluable': bool(groups),
+                     'group_count': len(groups), 'singleton_groups': sum(len(g) == 1 for g in groups),
+                     **complete_scores([hit['id'] for hit in run[q['query_id']]], groups)})
+    per = pd.DataFrame(rows)
+    columns = ['ce_mrr@20', 'ce_mrr@1000'] + [f'ce_recall@{k}' for k in CUTOFFS]
+    summaries, intervals = [], []
+    for scope in ['T06+T07', 'T06', 'T07']:
+        frame = per if scope == 'T06+T07' else per[per.category.str.startswith(scope)]
+        valid = frame[frame.evaluable]
+        row = {'scope': scope, 'annotated_questions': len(frame), 'evaluable_questions': len(valid),
+               'unevaluable_questions': len(frame)-len(valid)}
+        row.update({col: float(valid[col].mean()) if len(valid) else None for col in columns})
+        summaries.append(row)
+        if len(valid):
+            low, high = bootstrap(valid[columns].to_numpy(dtype=float))
+            intervals.extend({'scope': scope, 'evaluable_questions': len(valid), 'metric': col,
+                              'value': row[col], 'ci_lower': float(low[i]), 'ci_upper': float(high[i])}
+                             for i, col in enumerate(columns))
+    per.to_csv(OUT/'bm25_complete_evidence_per_question.csv', index=False, na_rep='NA')
+    pd.DataFrame(summaries).to_csv(OUT/'bm25_complete_evidence_summary.csv', index=False)
+    pd.DataFrame(intervals).to_csv(OUT/'bm25_complete_evidence_confidence_intervals.csv', index=False)
+    metadata_update(complete_evidence={'annotated_questions': len(per), 'evaluable_questions': int(per.evaluable.sum()),
+                                      'groups': int(per.group_count.sum()), 'singleton_groups': int(per.singleton_groups.sum()),
+                                      'mrr_depths': [20, 1000], 'recall_cutoffs': CUTOFFS})
 
 
 if __name__=='__main__': main()

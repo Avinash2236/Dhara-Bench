@@ -1,6 +1,8 @@
 # Dhara-Bench
 
-Indian Knowledge Systems evidence-retrieval benchmark: 60,121 corpus chunks, 325 questions, and 7,813 gold evidence links.
+Indian Knowledge Systems evidence-retrieval benchmark: 60,121 corpus chunks, 325 questions, and 7,578 gold evidence links.
+
+Annotation version: `frozen_eval_v3`. Original category names are retained. For T06/T07, `refs.chunk` is the deduplicated union of the current `refs.conjugate_groups` (212 links across 34 questions). Other categories retain their reviewed flat lists. For the 19 Combined (T06) and 15 Multi-hop (T07) questions, `refs.conjugate_groups` additionally records 401 minimal evidence groups (35 singletons). Members within a group are jointly required; alternative groups are valid evidence routes. All 34 questions have at least one group in the Oct23 workbook.
 
 ## Files
 
@@ -29,6 +31,8 @@ This evaluates the included BM25 rankings and saves CSV files in `metric_outputs
 
 Metrics are MRR over the top 20 results, plus precision, recall, F1, and nDCG at 3, 8, 10, and 20. Gold IDs are deduplicated per question. Overall and category scores are macro averages. Bootstrap confidence intervals are also included.
 
+The same command also recalculates `bm25_complete_evidence_per_question.csv`, `bm25_complete_evidence_summary.csv`, and `bm25_complete_evidence_confidence_intervals.csv`. CERecall@K is 1 when the top K contains every member of at least one group. CEMRR is the reciprocal of the earliest rank at which a whole group is retrieved, averaged over evaluable questions. Depths 20 and 1000 are reported explicitly; empty group collections are excluded from the CE denominator. Conventional metrics use these current `refs.chunk` lists, including the conjugate unions for T06/T07.
+
 ## Run BM25 retrieval again
 
 On Linux x86-64 with Python 3.12:
@@ -41,3 +45,13 @@ bash scripts/run_all_bm25.sh
 Setup downloads the pinned dependencies and Java runtime. Retrieval indexes chunk text with Pyserini/Anserini BM25 (`k1=0.9`, `b=0.4`, Porter stemming), returns up to 1,000 chunks per question, and recalculates metrics. This replaces the saved rankings and outputs.
 
 The input JSON files are not modified. Source references are included in each corpus record's `ref` field. Unannotated chunks are not necessarily irrelevant.
+
+The complete-evidence outputs are:
+
+| File in `metric_outputs/` | Contents |
+| --- | --- |
+| `bm25_complete_evidence_per_question.csv` | Scores, evidence-group counts, and completion rank for each Combined or Multi-hop question |
+| `bm25_complete_evidence_summary.csv` | Macro scores and evaluation denominators for Combined, Multi-hop, and both together |
+| `bm25_complete_evidence_confidence_intervals.csv` | 95% bootstrap confidence intervals for those summary scores |
+
+Conventional scores remain in `per_query_metrics.csv`, `overall_metrics.csv`, and `category_metrics.csv`, with their existing cutoff tables and bootstrap intervals.

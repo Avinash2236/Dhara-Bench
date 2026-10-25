@@ -28,7 +28,7 @@
   },
   "relevance_interpretation": "Binary relevance relative to declared expert gold judgments. Unannotated retrieved text is not necessarily semantically irrelevant.",
   "parameter_selection": "Fixed a priori; no evaluation-driven tuning.",
-  "existing_corpus_artifacts": "Corpus retained without filtering or deduplication; gold annotations follow frozen_eval_v2 (Oct9 update).",
+  "existing_corpus_artifacts": "Corpus retained without filtering or deduplication; frozen_eval_v3 uses current conjugate unions for T06/T07 conventional gold.",
   "java_version": "openjdk version \"21.0.8\" 2025-07-15 LTS\nOpenJDK Runtime Environment Zulu21.44+17-CA (build 21.0.8+9-LTS)\nOpenJDK 64-Bit Server VM Zulu21.44+17-CA (build 21.0.8+9-LTS, mixed mode, sharing)",
   "lucene_version": "9.9.1",
   "anserini_jar": "anserini-0.39.0-fatjar.jar",
@@ -65,36 +65,11 @@
   "queries_with_fewer_than_1000_results": 6,
   "short_run_policy": "Return up to 1000 matching documents; do not fabricate or pad zero-score documents. Precision denominator remains k.",
   "aggregation": "Unweighted macro mean over questions; per-query F1 is averaged, not F1 of macro precision/recall.",
-  "no_gold_hit_top10": 161,
-  "no_gold_hit_top100": 105,
+  "no_gold_hit_top10": 167,
+  "no_gold_hit_top100": 111,
   "rank1_gold_hits": 75,
   "evaluated_queries": 325,
-  "completed_utc": "2026-10-10T11:29:51.986386+00:00",
-  "final_checks": {
-    "queries": 325,
-    "run_query_coverage": true,
-    "unique_document_ids_per_query": true,
-    "strictly_increasing_ranks": true,
-    "bounded_metrics": true,
-    "nondecreasing_recall": true,
-    "ndcg_bounded": true,
-    "latex_finite": true,
-    "figures_nonempty": true,
-    "csvs_read_back": 12,
-    "inputs_unchanged": true
-  },
-  "reproducibility_check": {
-    "fresh_index_rebuild": true,
-    "identical_file_sha256": {
-      "run_bm25_top1000.trec": "567c051b6169d1db9c3594e121c9f1a2d3b65be79af757e3fb465338e02ded50",
-      "per_query_metrics.csv": "483ca0868c63e33b983cbfa819a6ceca8f5559ffa128ce63da9dfeb503574155",
-      "overall_metrics.csv": "72c1262081c44748aa32e93a259b660ddf6cf9abbdfa2ba9c2779d8dd02231a8",
-      "category_metrics.csv": "e6800ad16004430f07a388afb16c431f177e9fb7379766b47ec82178bda61055",
-      "overall_bootstrap_ci.csv": "d55cd6dc75d82ee84012efb6f1593ca2c1238bcec30e4c3211bab32d34b66a93",
-      "category_bootstrap_ci.csv": "021aafb4376a4273277d341e8fdc0e41b7815e258a2ae3c5cd22660d8ff1361d"
-    },
-    "result": "byte-identical run, per-query metrics, aggregates, and bootstrap intervals"
-  },
+  "completed_utc": "2026-10-25T11:48:39.238720+00:00",
   "mrr_depth": 20,
   "metric_columns": [
     "mrr",
@@ -116,7 +91,74 @@
     "ndcg@20"
   ],
   "evaluation_protocol": "metrics_updated top-20 ranking convention",
-  "evaluation_json_sha256": "92762c65cbe1229299c3473d024900facfcfd6c1c6b1887f0dcb45fcbea24bc3",
-  "annotation_version": "frozen_eval_v2",
-  "retrieval_provenance": "Rankings from the local canonical BM25 run; package evaluation independently recomputed against its JSON dataset."
+  "evaluation_json_sha256": "865a9ae14652f841f8365cd4305d877825635aef2ee6d7931fdd544122dc801b",
+  "annotation_version": "frozen_eval_v3",
+  "retrieval_provenance": "Rankings from the local canonical BM25 run; package evaluation independently recomputed against its JSON dataset.",
+  "complete_evidence": {
+    "annotated_questions": 34,
+    "evaluable_questions": 34,
+    "groups": 401,
+    "singleton_groups": 35,
+    "mrr_depths": [
+      20,
+      1000
+    ],
+    "recall_cutoffs": [
+      3,
+      8,
+      10,
+      20
+    ]
+  },
+  "script_sha256": {
+    "bm25_common.py": "234e7a719db7d93d1011673318395f2212ef1dc07893145eebef5d32d5ddc1f1",
+    "build_bm25_index.sh": "6311dc8f8131187b866af62a9551093b3a535b15c7c4146dcccc13940b796ba2",
+    "env_bm25.sh": "fa6423b60be34ac41805db5dd44f69c569f93feba053fb57a4bfbd721c6a9cad",
+    "evaluate_bm25.py": "60bc47681aea960c3d85768f0de7da0b7e78dddbb63e880fd155cd92c749cc2f",
+    "prepare_pyserini_collection.py": "4bc1fbb0fa2987704d584a912b4a8660ea17fbe15908fc240c5034cbf5eed80d",
+    "run_all_bm25.sh": "3d909f7733f7f64a028066e8a3cc1604b55778b71c1bef45a5c687fce640b6d6",
+    "run_bm25.py": "a9cf9aff6ab2b396f78ea49dd436cbb4e74d0e6901fc4e80ff6c494f373cac50",
+    "setup_bm25.sh": "397483fe31b48480b417467cdca6845ce90ffc60383a928b62a93d78fa79a7bc"
+  },
+  "retrieval_completed_utc": "2026-10-10T11:29:51.986386+00:00",
+  "historical_run_checks": {
+    "reproducibility_check": {
+      "fresh_index_rebuild": true,
+      "identical_file_sha256": {
+        "run_bm25_top1000.trec": "567c051b6169d1db9c3594e121c9f1a2d3b65be79af757e3fb465338e02ded50",
+        "per_query_metrics.csv": "483ca0868c63e33b983cbfa819a6ceca8f5559ffa128ce63da9dfeb503574155",
+        "overall_metrics.csv": "72c1262081c44748aa32e93a259b660ddf6cf9abbdfa2ba9c2779d8dd02231a8",
+        "category_metrics.csv": "e6800ad16004430f07a388afb16c431f177e9fb7379766b47ec82178bda61055",
+        "overall_bootstrap_ci.csv": "d55cd6dc75d82ee84012efb6f1593ca2c1238bcec30e4c3211bab32d34b66a93",
+        "category_bootstrap_ci.csv": "021aafb4376a4273277d341e8fdc0e41b7815e258a2ae3c5cd22660d8ff1361d"
+      },
+      "result": "byte-identical run, per-query metrics, aggregates, and bootstrap intervals"
+    },
+    "final_checks": {
+      "queries": 325,
+      "run_query_coverage": true,
+      "unique_document_ids_per_query": true,
+      "strictly_increasing_ranks": true,
+      "bounded_metrics": true,
+      "nondecreasing_recall": true,
+      "ndcg_bounded": true,
+      "latex_finite": true,
+      "figures_nonempty": true,
+      "csvs_read_back": 12,
+      "inputs_unchanged": true
+    }
+  },
+  "metric_output_sha256": {
+    "all_category_metrics_by_cutoff.csv": "cc205f49be23a64e7f7bddfd6972e7f94f01e22c2be7cd0f1c5ff469c13966cd",
+    "all_metrics_by_cutoff.csv": "9318c362b48e2b7cd1d3fd0d4ce6eddca2300cd62dce44526797a32e9e90f14a",
+    "bm25_complete_evidence_confidence_intervals.csv": "f8df76b33057a2526d412a93cb081ab072e33a3e94c7550b34143a13080cd7fe",
+    "bm25_complete_evidence_per_question.csv": "e70f7193999235ba14368f8f56ef32bceb18be27e1ac9a0511c6467f092212f0",
+    "bm25_complete_evidence_summary.csv": "94e95fc92eefe91c0463a2c87f19e2b20216953db0026b6e3a271122f03ab3bc",
+    "category_bootstrap_ci.csv": "1bba7183110a5092bd45e5073e159e4317a83163b250ce2bf3603d8613d0e1dd",
+    "category_metrics.csv": "05e0229e9de4af063b18db9b596528f27a97aa97509b94149990d3c6ac169e59",
+    "overall_bootstrap_ci.csv": "c2d2c1eedec2f9d234e8a597cac355c6d3b8a28a8d7c005ed2e0eb2249976c98",
+    "overall_metrics.csv": "69d5e5cd2f881258554c6bc6ad782097bae296c57bc6e6d8d522d6ef8b26476d",
+    "per_query_metrics.csv": "202a2f2eec678873d6f1201ecc33b742cc29e553903d029b3a91c5537d282642"
+  },
+  "conventional_gold_policy": "T06/T07: deduplicated union of current conjugate groups. Other categories: reviewed gold."
 }

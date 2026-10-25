@@ -21,10 +21,11 @@ metadata_update(status='prepared', started_utc=datetime.now(timezone.utc).isofor
                 git_commit=git.stdout.strip() if git.returncode == 0 else None,
                 bm25_k1=0.9, bm25_b=0.4, retrieval_depth=1000, evaluation_cutoffs=CUTOFFS, mrr_depth=MRR_DEPTH,
                 number_of_queries=len(queries), number_of_corpus_chunks=len(corpus),
-                query_sanitization='None: exact workbook string passed to LuceneSearcher.search; bag-of-words query generator, not query-parser syntax.',
+                annotation_version='frozen_eval_v3',
+                query_sanitization='None: exact JSON question string passed to the bag-of-words query generator.',
                 indexed_content='Exact chunk text only; canonical stringified corpus ID is a document identifier, not a retrieval term. No ref or source metadata.',
                 bootstrap={'resamples':10000,'seed':42,'unit':'question','interval':'percentile 2.5/97.5, NumPy linear quantiles', 'rng':'numpy.random.default_rng(42), reset for each scope; batches of 100'},
                 relevance_interpretation='Binary relevance relative to declared expert gold judgments. Unannotated retrieved text is not necessarily semantically irrelevant.',
                 parameter_selection='Fixed a priori; no evaluation-driven tuning.',
-                existing_corpus_artifacts='Corpus retained without filtering or deduplication; frozen gold links exclude IDs 33577 and 34763 from query 251.')
+                existing_corpus_artifacts='Corpus retained without filtering or deduplication; reviewed gold retains the supplied query 251 links to artifact IDs 33577 and 34763.')
 print(f'Validated {len(queries)} questions; wrote {len(corpus)} exact-content JSONL documents.')

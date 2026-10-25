@@ -66,13 +66,53 @@ def load_inputs():
             raise ValueError(f'Empty question or gold set: {qid}')
         if gold - corpus.keys():
             raise ValueError(f'Orphan gold IDs for query {qid}: {sorted(gold - corpus.keys())}')
+        groups = row['refs'].get('conjugate_groups')
+        if category in ('T06', 'T07'):
+            validate_groups(groups, corpus)
+            if gold != set(conjugate_flat_gold(groups)) or len(original) != len(gold):
+                raise ValueError(f'Flat gold must equal the deduplicated conjugate union: {qid}')
+        elif groups is not None:
+            raise ValueError(f'Unexpected conjugate annotation for {qid}')
         queries.append({'query_id':qid, 'question':question, 'category':category,
+                        'category_label':row['category'], 'conjugate_groups':groups,
                         'gold_ids':list(dict.fromkeys(original)), 'gold_set':gold})
     if len(queries) != 325 or len({q['query_id'] for q in queries}) != 325:
         raise ValueError('Expected 325 unique query IDs')
     if Counter(q['category'] for q in queries) != Counter(EXPECTED):
         raise ValueError('Frozen category counts do not match')
     return sorted(queries, key=lambda q:q['query_id']), corpus
+
+
+def conjugate_flat_gold(groups):
+    return list(dict.fromkeys(docid for group in groups for docid in group))
+
+
+def validate_groups(groups, corpus):
+    if not isinstance(groups, list):
+        raise ValueError('Expected an explicit list of conjugate groups')
+    seen = set()
+    for group in groups:
+        if not isinstance(group, list) or not group or any(type(i) is not int for i in group):
+            raise ValueError('Each group must be a nonempty integer list')
+        key = frozenset(group)
+        if len(key) != len(group) or key in seen or key - corpus.keys():
+            raise ValueError('Duplicate group/member or orphan conjugate ID')
+        seen.add(key)
+    if any(a < b for a in seen for b in seen):
+        raise ValueError('Conjugate groups must be inclusion-minimal')
+
+
+def complete_scores(ranking, groups):
+    if len(ranking) != len(set(ranking)):
+        raise ValueError('Duplicate retrieved IDs')
+    ranks = {docid: rank for rank, docid in enumerate(ranking[:1000], 1)}
+    completion = min((max(ranks[i] for i in group) for group in groups
+                      if all(i in ranks for i in group)), default=None)
+    return {'completion_rank': completion,
+            **{f'ce_mrr@{k}': (1 / completion if completion is not None and completion <= k else 0.)
+               if groups else None for k in (20, 1000)},
+            **{f'ce_recall@{k}': int(completion is not None and completion <= k)
+               if groups else None for k in CUTOFFS}}
 
 
 def metric_row(ranked_ids, gold):

@@ -1,0 +1,35 @@
+query_id,category,question,evaluable,group_count,singleton_groups,completion_rank,ce_mrr@20,ce_mrr@1000,ce_recall@3,ce_recall@8,ce_recall@10,ce_recall@20
+104,T07: Multi-hop Reasoning,What is the connection between Rasa and Bhava?,True,5,5,4.0,0.25,0.25,0,1,1,1
+105,T07: Multi-hop Reasoning,How Natya veda is connected to other Vedas?,True,1,1,20.0,0.05,0.05,0,0,0,1
+123,T06: Combined,What are the symptoms of increased Vata? What to do to treat these symptoms ?,True,93,1,11.0,0.09090909090909091,0.09090909090909091,0,0,0,1
+124,T06: Combined,What happens to the body in summer? What kind of food should we eat to balance it?,True,17,2,13.0,0.07692307692307693,0.07692307692307693,0,0,0,1
+125,T07: Multi-hop Reasoning,What is the text written by the disciple of Punarvasu Atreya?,True,5,0,242.0,0.0,0.004132231404958678,0,0,0,0
+144,T06: Combined,Who is vishwakarma? How many faces dose he have?,True,1,1,620.0,0.0,0.0016129032258064516,0,0,0,0
+145,T06: Combined,What is the mythological background of manasara? Who is its author,True,1,1,NA,0.0,0.0,0,0,0,0
+146,T07: Multi-hop Reasoning,What is the realationship between Shilpi and Sthapati,True,2,0,35.0,0.0,0.02857142857142857,0,0,0,0
+157,T06: Combined,What did Nachiketa ask for as his first boon? How did Yama respond?,True,4,0,NA,0.0,0.0,0,0,0,0
+158,T07: Multi-hop Reasoning,How is the chariot in the Upanishad connected to the Atman (Self)?,True,4,0,NA,0.0,0.0,0,0,0,0
+159,T07: Multi-hop Reasoning,What is the connection between the two birds on one tree and the idea of Brahman?,True,3,3,1.0,1.0,1.0,1,1,1,1
+176,T06: Combined,What is Agnihotra? At what time should one perform?,True,6,0,192.0,0.0,0.005208333333333333,0,0,0,0
+177,T06: Combined,List the Chaturvarna? What are the duties prescribed by the Dharmashastras for each.,True,1,0,NA,0.0,0.0,0,0,0,0
+191,T06: Combined,Who was Atri? Who was born from Atri?,True,115,7,1.0,1.0,1.0,1,1,1,1
+192,T06: Combined,Which manifestation of Viṣṇu has a horse’s head? What was the purpose of that manifestation?,True,4,0,NA,0.0,0.0,0,0,0,0
+193,T07: Multi-hop Reasoning,What is the bioogical relationship between Krishna and Aniruddha?,True,3,2,56.0,0.0,0.017857142857142856,0,0,0,0
+194,T07: Multi-hop Reasoning,How is Hiranyaksha related to Prahlada?,True,2,0,NA,0.0,0.0,0,0,0,0
+214,T06: Combined,Who was the guru of the Pandavas and Kauravas? What tragic event involving his son shaped his life?,True,3,0,NA,0.0,0.0,0,0,0,0
+215,T06: Combined,Who was the commander of the Kaurava forces on day one of the war? What vow did he take at the start of the battle?,True,3,0,439.0,0.0,0.002277904328018223,0,0,0,0
+216,T07: Multi-hop Reasoning,What is the relationship between maternal gradfather of Abhimanyu and Pandava's mother,True,4,0,NA,0.0,0.0,0,0,0,0
+217,T07: Multi-hop Reasoning,"Explain the relation between Amba, Shikhandi and Bhishma",True,7,0,901.0,0.0,0.0011098779134295228,0,0,0,0
+228,T06: Combined,Who is father of Nabhanedista? How many brothers he had?,True,1,1,NA,0.0,0.0,0,0,0,0
+229,T06: Combined,What is the definition of the rudra? How many Rudras are there?,True,69,1,183.0,0.0,0.00546448087431694,0,0,0,0
+242,T06: Combined,Who is the wife of Rama and Who were her sisters?,True,2,0,NA,0.0,0.0,0,0,0,0
+243,T06: Combined,"In Ramayana, Who was the king of Lanka? Who were his parents?",True,1,0,NA,0.0,0.0,0,0,0,0
+244,T07: Multi-hop Reasoning,Who is the father of Rama's wife?,True,20,7,52.0,0.0,0.019230769230769232,0,0,0,0
+245,T07: Multi-hop Reasoning,How are Sita's in-laws connected to Manu ?,True,12,0,554.0,0.0,0.0018050541516245488,0,0,0,0
+277,T06: Combined,How many people were brought for questioning to the court of King Vikrasimha? Who requested immunity from punishment before sharing their entire story?,True,1,0,NA,0.0,0.0,0,0,0,0
+278,T06: Combined, Who was Indradatta? What role did he play in King Nanda’s revival?,True,6,0,2.0,0.5,0.5,1,1,1,1
+280,T07: Multi-hop Reasoning,How are Somaprabha and Svayamprabha related and what role did Svayamprabha play in Kalingasena’s adventure?  ,True,1,0,NA,0.0,0.0,0,0,0,0
+296,T07: Multi-hop Reasoning,What was the multi chain of events that led to Nandivarman III gaining the permanent title of Tellareindra?,True,1,1,1.0,1.0,1.0,1,1,1,1
+314,T06: Combined,Name a Siddhānta text of Indian Mathematics. What subject does it primarily deal with?,True,1,1,3.0,0.3333333333333333,0.3333333333333333,1,1,1,1
+315,T06: Combined,What is the major work of Narayana called? What topics does it cover?,True,1,1,2.0,0.5,0.5,1,1,1,1
+317,T07: Multi-hop Reasoning,What is the relationship between Bhaskara and Brahmagupta's mathematical work,True,1,0,290.0,0.0,0.0034482758620689655,0,0,0,0
