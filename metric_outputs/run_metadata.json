@@ -91,7 +91,7 @@
     "ndcg@20"
   ],
   "evaluation_protocol": "metrics_updated top-20 ranking convention",
-  "evaluation_json_sha256": "865a9ae14652f841f8365cd4305d877825635aef2ee6d7931fdd544122dc801b",
+  "evaluation_json_sha256": "6ac416e8a03b97449b52e24ec3775df0f1c2ad9b61acf0de5367399641fb8318",
   "annotation_version": "frozen_eval_v3",
   "retrieval_provenance": "Rankings from the local canonical BM25 run; package evaluation independently recomputed against its JSON dataset.",
   "complete_evidence": {
@@ -152,7 +152,7 @@
     "all_category_metrics_by_cutoff.csv": "cc205f49be23a64e7f7bddfd6972e7f94f01e22c2be7cd0f1c5ff469c13966cd",
     "all_metrics_by_cutoff.csv": "9318c362b48e2b7cd1d3fd0d4ce6eddca2300cd62dce44526797a32e9e90f14a",
     "bm25_complete_evidence_confidence_intervals.csv": "f8df76b33057a2526d412a93cb081ab072e33a3e94c7550b34143a13080cd7fe",
-    "bm25_complete_evidence_per_question.csv": "e70f7193999235ba14368f8f56ef32bceb18be27e1ac9a0511c6467f092212f0",
+    "bm25_complete_evidence_per_question.csv": "f471af54f028061abb5c8aba8929cf3bb980ae2af85721df4453ca8aca233d25",
     "bm25_complete_evidence_summary.csv": "94e95fc92eefe91c0463a2c87f19e2b20216953db0026b6e3a271122f03ab3bc",
     "category_bootstrap_ci.csv": "1bba7183110a5092bd45e5073e159e4317a83163b250ce2bf3603d8613d0e1dd",
     "category_metrics.csv": "05e0229e9de4af063b18db9b596528f27a97aa97509b94149990d3c6ac169e59",

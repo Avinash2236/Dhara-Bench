@@ -3266,7 +3266,7 @@
   {
     "query_id": 123,
     "question": "What are the symptoms of increased Vata? What to do to treat these symptoms ?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         72061,
@@ -3676,7 +3676,7 @@
   {
     "query_id": 124,
     "question": "What happens to the body in summer? What kind of food should we eat to balance it?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         71925,
@@ -4104,7 +4104,7 @@
   {
     "query_id": 144,
     "question": "Who is vishwakarma? How many faces dose he have?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         262633
@@ -4119,7 +4119,7 @@
   {
     "query_id": 145,
     "question": "What is the mythological background of manasara? Who is its author",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         262629
@@ -4349,7 +4349,7 @@
   {
     "query_id": 157,
     "question": "What did Nachiketa ask for as his first boon? How did Yama respond?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         261886,
@@ -4802,7 +4802,7 @@
   {
     "query_id": 176,
     "question": "What is Agnihotra? At what time should one perform?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         23132,
@@ -4844,7 +4844,7 @@
   {
     "query_id": 177,
     "question": "List the Chaturvarna? What are the duties prescribed by the Dharmashastras for each.",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         70541,
@@ -5094,7 +5094,7 @@
   {
     "query_id": 191,
     "question": "Who was Atri? Who was born from Atri?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         48905,
@@ -5589,7 +5589,7 @@
   {
     "query_id": 192,
     "question": "Which manifestation of Viṣṇu has a horse’s head? What was the purpose of that manifestation?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         49723,
@@ -6134,7 +6134,7 @@
   {
     "query_id": 214,
     "question": "Who was the guru of the Pandavas and Kauravas? What tragic event involving his son shaped his life?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         269434,
@@ -6161,7 +6161,7 @@
   {
     "query_id": 215,
     "question": "Who was the commander of the Kaurava forces on day one of the war? What vow did he take at the start of the battle?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         48952,
@@ -7274,7 +7274,7 @@
   {
     "query_id": 228,
     "question": "Who is father of Nabhanedista? How many brothers he had?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         117249
@@ -7289,7 +7289,7 @@
   {
     "query_id": 229,
     "question": "What is the definition of the rudra? How many Rudras are there?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         52432,
@@ -8083,7 +8083,7 @@
   {
     "query_id": 242,
     "question": "Who is the wife of Rama and Who were her sisters?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         1437,
@@ -8105,7 +8105,7 @@
   {
     "query_id": 243,
     "question": "In Ramayana, Who was the king of Lanka? Who were his parents?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         2171,
@@ -11518,7 +11518,7 @@
   {
     "query_id": 277,
     "question": "How many people were brought for questioning to the court of King Vikrasimha? Who requested immunity from punishment before sharing their entire story?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         87968,
@@ -11535,7 +11535,7 @@
   {
     "query_id": 278,
     "question": " Who was Indradatta? What role did he play in King Nanda’s revival?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         87434,
@@ -12000,7 +12000,7 @@
   {
     "query_id": 314,
     "question": "Name a Siddhānta text of Indian Mathematics. What subject does it primarily deal with?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         250425
@@ -12015,7 +12015,7 @@
   {
     "query_id": 315,
     "question": "What is the major work of Narayana called? What topics does it cover?",
-    "category": "T06: Combined",
+    "category": "T06: Composite",
     "refs": {
       "chunk": [
         246345

@@ -2,7 +2,7 @@
 
 Indian Knowledge Systems evidence-retrieval benchmark: 60,121 corpus chunks, 325 questions, and 7,578 gold evidence links.
 
-Annotation version: `frozen_eval_v3`. Original category names are retained. For T06/T07, `refs.chunk` is the deduplicated union of the current `refs.conjugate_groups` (212 links across 34 questions). Other categories retain their reviewed flat lists. For the 19 Combined (T06) and 15 Multi-hop (T07) questions, `refs.conjugate_groups` additionally records 401 minimal evidence groups (35 singletons). Members within a group are jointly required; alternative groups are valid evidence routes. All 34 questions have at least one group in the Oct23 workbook.
+Annotation version: `frozen_eval_v3`. Category codes are retained; T06 is named Composite. For T06/T07, `refs.chunk` is the deduplicated union of the current `refs.conjugate_groups` (212 links across 34 questions). Other categories retain their reviewed flat lists. For the 19 Composite (T06) and 15 Multi-hop (T07) questions, `refs.conjugate_groups` additionally records 401 minimal evidence groups (35 singletons). Members within a group are jointly required; alternative groups are valid evidence routes. All 34 questions have at least one group in the Oct23 workbook.
 
 ## Files
 
@@ -50,8 +50,8 @@ The complete-evidence outputs are:
 
 | File in `metric_outputs/` | Contents |
 | --- | --- |
-| `bm25_complete_evidence_per_question.csv` | Scores, evidence-group counts, and completion rank for each Combined or Multi-hop question |
-| `bm25_complete_evidence_summary.csv` | Macro scores and evaluation denominators for Combined, Multi-hop, and both together |
+| `bm25_complete_evidence_per_question.csv` | Scores, evidence-group counts, and completion rank for each Composite or Multi-hop question |
+| `bm25_complete_evidence_summary.csv` | Macro scores and evaluation denominators for Composite, Multi-hop, and both together |
 | `bm25_complete_evidence_confidence_intervals.csv` | 95% bootstrap confidence intervals for those summary scores |
 
 Conventional scores remain in `per_query_metrics.csv`, `overall_metrics.csv`, and `category_metrics.csv`, with their existing cutoff tables and bootstrap intervals.
