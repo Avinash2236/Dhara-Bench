@@ -6,16 +6,6 @@ import pandas as pd
 from bm25_common import *
 
 
-def bootstrap(values):
-    rng = np.random.default_rng(42)
-    n = len(values)
-    means = np.empty((10000, values.shape[1]), dtype=float)
-    for begin in range(0, 10000, 100):
-        sampled = rng.integers(0, n, size=(100, n))
-        means[begin:begin+100] = values[sampled].mean(axis=1)
-    return np.quantile(means, [.025, .975], axis=0, method='linear')
-
-
 def main():
     queries, corpus = load_inputs()
     metadata = json.loads((OUT / 'run_metadata.json').read_text())
@@ -48,30 +38,23 @@ def main():
     assert (np.diff(per[[f'recall@{k}' for k in CUTOFFS]].values,axis=1) >= -1e-12).all()
     assert (np.diff(per[[f'gold_hits_at_{k}' for k in CUTOFFS]].values,axis=1) >= 0).all()
     per.to_csv(OUT / 'per_query_metrics.csv', index=False, na_rep='NA')
-    overall, category, overall_ci, category_ci, long_all, long_cat = [], [], [], [], [], []
+    overall, category, long_all, long_cat = [], [], [], []
     for scope in ['Overall'] + CATEGORIES:
         frame = per if scope == 'Overall' else per[per.category == scope]
         values = frame[columns].to_numpy(dtype=float)
         means = values.mean(axis=0)
-        low, high = bootstrap(values)
         aggregate = {'n_questions':len(frame)}
         for col, mean in zip(columns, means):
             aggregate[col] = float(mean)
         if scope == 'Overall': overall.append(aggregate)
         else: category.append({'category':scope, **aggregate})
-        for i, col in enumerate(columns):
-            metric, k = col.split('@') if '@' in col else ('mrr', str(MRR_DEPTH))
-            row = {'metric':NAMES[metric], 'k':int(k), 'value':float(means[i]),
-                   'ci_lower':float(low[i]), 'ci_upper':float(high[i])}
-            if scope == 'Overall': overall_ci.append(row)
-            else: category_ci.append({'category':scope, **row})
         for k in CUTOFFS:
             row = {'k':k, **{NAMES[m]:aggregate[f'{m}@{k}'] for m in METRICS}}
             if scope == 'Overall': long_all.append(row)
             else: long_cat.append({'category':scope, 'n_questions':len(frame), **row})
-        print(f'Computed macro metrics and 10,000 question bootstrap resamples: {scope}',flush=True)
-    for name, data in [('overall_metrics',overall),('category_metrics',category),('overall_bootstrap_ci',overall_ci),
-                       ('category_bootstrap_ci',category_ci),('all_metrics_by_cutoff',long_all),
+        print(f'Computed macro metrics: {scope}',flush=True)
+    for name, data in [('overall_metrics',overall),('category_metrics',category),
+                       ('all_metrics_by_cutoff',long_all),
                        ('all_category_metrics_by_cutoff',long_cat)]:
         pd.DataFrame(data).to_csv(OUT / f'{name}.csv',index=False)
     evaluate_complete_evidence(queries, run)
@@ -109,7 +92,7 @@ def evaluate_complete_evidence(queries, run):
                      **complete_scores([hit['id'] for hit in run[q['query_id']]], groups)})
     per = pd.DataFrame(rows)
     columns = ['ce_mrr@20', 'ce_mrr@1000'] + [f'ce_recall@{k}' for k in CUTOFFS]
-    summaries, intervals = [], []
+    summaries = []
     for scope in ['T06+T07', 'T06', 'T07']:
         frame = per if scope == 'T06+T07' else per[per.category.str.startswith(scope)]
         valid = frame[frame.evaluable]
@@ -117,14 +100,8 @@ def evaluate_complete_evidence(queries, run):
                'unevaluable_questions': len(frame)-len(valid)}
         row.update({col: float(valid[col].mean()) if len(valid) else None for col in columns})
         summaries.append(row)
-        if len(valid):
-            low, high = bootstrap(valid[columns].to_numpy(dtype=float))
-            intervals.extend({'scope': scope, 'evaluable_questions': len(valid), 'metric': col,
-                              'value': row[col], 'ci_lower': float(low[i]), 'ci_upper': float(high[i])}
-                             for i, col in enumerate(columns))
     per.to_csv(OUT/'bm25_complete_evidence_per_question.csv', index=False, na_rep='NA')
     pd.DataFrame(summaries).to_csv(OUT/'bm25_complete_evidence_summary.csv', index=False)
-    pd.DataFrame(intervals).to_csv(OUT/'bm25_complete_evidence_confidence_intervals.csv', index=False)
     metadata_update(complete_evidence={'annotated_questions': len(per), 'evaluable_questions': int(per.evaluable.sum()),
                                       'groups': int(per.group_count.sum()), 'singleton_groups': int(per.singleton_groups.sum()),
                                       'mrr_depths': [20, 1000], 'recall_cutoffs': CUTOFFS})

@@ -29,9 +29,9 @@ python3.12 -m venv .venv
 
 This evaluates the included BM25 rankings and saves CSV files in `metric_outputs/`.
 
-Metrics are MRR over the top 20 results, plus precision, recall, F1, and nDCG at 3, 8, 10, and 20. Gold IDs are deduplicated per question. Overall and category scores are macro averages. Bootstrap confidence intervals are also included.
+Metrics are MRR over the top 20 results, plus precision, recall, F1, and nDCG at 3, 8, 10, and 20. Gold IDs are deduplicated per question. Scores are reported as macro averages over all 325 questions and separately within each of the twelve question categories.
 
-The same command also recalculates `bm25_complete_evidence_per_question.csv`, `bm25_complete_evidence_summary.csv`, and `bm25_complete_evidence_confidence_intervals.csv`. CERecall@K is 1 when the top K contains every member of at least one group. CEMRR is the reciprocal of the earliest rank at which a whole group is retrieved, averaged over evaluable questions. Depths 20 and 1000 are reported explicitly; empty group collections are excluded from the CE denominator. Conventional metrics use these current `refs.chunk` lists, including the conjugate unions for T06/T07.
+The same command also recalculates `bm25_complete_evidence_per_question.csv` and `bm25_complete_evidence_summary.csv`. CERecall@K is 1 when the top K contains every member of at least one group. CEMRR is the reciprocal of the earliest rank at which a whole group is retrieved, averaged over evaluable questions. Depths 20 and 1000 are reported explicitly; empty group collections are excluded from the CE denominator. Conventional metrics use these current `refs.chunk` lists, including the conjugate unions for T06/T07.
 
 ## Run BM25 retrieval again
 
@@ -52,6 +52,5 @@ The complete-evidence outputs are:
 | --- | --- |
 | `bm25_complete_evidence_per_question.csv` | Scores, evidence-group counts, and completion rank for each Composite or Multi-hop question |
 | `bm25_complete_evidence_summary.csv` | Macro scores and evaluation denominators for Composite, Multi-hop, and both together |
-| `bm25_complete_evidence_confidence_intervals.csv` | 95% bootstrap confidence intervals for those summary scores |
 
-Conventional scores remain in `per_query_metrics.csv`, `overall_metrics.csv`, and `category_metrics.csv`, with their existing cutoff tables and bootstrap intervals.
+Conventional scores are stored in `per_query_metrics.csv`, `overall_metrics.csv`, and `category_metrics.csv`. Results at each cutoff are provided in `all_metrics_by_cutoff.csv` and `all_category_metrics_by_cutoff.csv`.

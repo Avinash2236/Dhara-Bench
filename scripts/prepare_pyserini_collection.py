@@ -24,7 +24,6 @@ metadata_update(status='prepared', started_utc=datetime.now(timezone.utc).isofor
                 annotation_version='frozen_eval_v3',
                 query_sanitization='None: exact JSON question string passed to the bag-of-words query generator.',
                 indexed_content='Exact chunk text only; canonical stringified corpus ID is a document identifier, not a retrieval term. No ref or source metadata.',
-                bootstrap={'resamples':10000,'seed':42,'unit':'question','interval':'percentile 2.5/97.5, NumPy linear quantiles', 'rng':'numpy.random.default_rng(42), reset for each scope; batches of 100'},
                 relevance_interpretation='Binary relevance relative to declared expert gold judgments. Unannotated retrieved text is not necessarily semantically irrelevant.',
                 parameter_selection='Fixed a priori; no evaluation-driven tuning.',
                 existing_corpus_artifacts='Corpus retained without filtering or deduplication; reviewed gold retains the supplied query 251 links to artifact IDs 33577 and 34763.')
