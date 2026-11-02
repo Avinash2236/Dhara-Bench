@@ -109,9 +109,9 @@ def complete_scores(ranking, groups):
     completion = min((max(ranks[i] for i in group) for group in groups
                       if all(i in ranks for i in group)), default=None)
     return {'completion_rank': completion,
-            **{f'ce_mrr@{k}': (1 / completion if completion is not None and completion <= k else 0.)
+            **{f'CE_RR@{k}': (1 / completion if completion is not None and completion <= k else 0.)
                if groups else None for k in (20, 1000)},
-            **{f'ce_recall@{k}': int(completion is not None and completion <= k)
+            **{f'CE_Recall@{k}': int(completion is not None and completion <= k)
                if groups else None for k in CUTOFFS}}
 
 

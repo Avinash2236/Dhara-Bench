@@ -62,7 +62,7 @@
   "no_gold_hit_top100": 111,
   "rank1_gold_hits": 75,
   "evaluated_queries": 325,
-  "completed_utc": "2026-10-27T13:26:14.203443+00:00",
+  "completed_utc": "2026-11-02T10:15:21.225935+00:00",
   "mrr_depth": 20,
   "metric_columns": [
     "mrr",
@@ -104,10 +104,10 @@
     ]
   },
   "script_sha256": {
-    "bm25_common.py": "234e7a719db7d93d1011673318395f2212ef1dc07893145eebef5d32d5ddc1f1",
+    "bm25_common.py": "fd5187bbcbee41d1587af0495040f9b9d5fa749a68cdc21a78361736e3eb382f",
     "build_bm25_index.sh": "6311dc8f8131187b866af62a9551093b3a535b15c7c4146dcccc13940b796ba2",
     "env_bm25.sh": "fa6423b60be34ac41805db5dd44f69c569f93feba053fb57a4bfbd721c6a9cad",
-    "evaluate_bm25.py": "6dc361e950026ae8a09b9ffc7b28102c3580fece7d37f6f8c18eebfff2ad7540",
+    "evaluate_bm25.py": "0565f5103117fb7ea74d24ed61ba06efca3265efa85db1689c7cb755413c76e9",
     "prepare_pyserini_collection.py": "fb3bbf0f1235a40a92d317a0522a47bd6b51bb2181f54a02ae7de9977db9e4e9",
     "run_all_bm25.sh": "3d909f7733f7f64a028066e8a3cc1604b55778b71c1bef45a5c687fce640b6d6",
     "run_bm25.py": "a9cf9aff6ab2b396f78ea49dd436cbb4e74d0e6901fc4e80ff6c494f373cac50",
@@ -142,8 +142,8 @@
   "metric_output_sha256": {
     "all_category_metrics_by_cutoff.csv": "cc205f49be23a64e7f7bddfd6972e7f94f01e22c2be7cd0f1c5ff469c13966cd",
     "all_metrics_by_cutoff.csv": "9318c362b48e2b7cd1d3fd0d4ce6eddca2300cd62dce44526797a32e9e90f14a",
-    "bm25_complete_evidence_per_question.csv": "f471af54f028061abb5c8aba8929cf3bb980ae2af85721df4453ca8aca233d25",
-    "bm25_complete_evidence_summary.csv": "94e95fc92eefe91c0463a2c87f19e2b20216953db0026b6e3a271122f03ab3bc",
+    "bm25_complete_evidence_per_question.csv": "7aea1256a020786bc356cdef420c547b86ddba82a578ca9f24b789352ec6c6ce",
+    "bm25_complete_evidence_summary.csv": "3718d3057a9b74497337bdaedaae4d70ae8f3476018ef918c67c011d87fb3ac8",
     "category_metrics.csv": "05e0229e9de4af063b18db9b596528f27a97aa97509b94149990d3c6ac169e59",
     "overall_metrics.csv": "69d5e5cd2f881258554c6bc6ad782097bae296c57bc6e6d8d522d6ef8b26476d",
     "per_query_metrics.csv": "202a2f2eec678873d6f1201ecc33b742cc29e553903d029b3a91c5537d282642"

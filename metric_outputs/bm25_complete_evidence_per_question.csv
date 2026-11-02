@@ -1,4 +1,4 @@
-query_id,category,question,evaluable,group_count,singleton_groups,completion_rank,ce_mrr@20,ce_mrr@1000,ce_recall@3,ce_recall@8,ce_recall@10,ce_recall@20
+query_id,category,question,evaluable,group_count,singleton_groups,completion_rank,CE_RR@20,CE_RR@1000,CE_Recall@3,CE_Recall@8,CE_Recall@10,CE_Recall@20
 104,T07: Multi-hop Reasoning,What is the connection between Rasa and Bhava?,True,5,5,4.0,0.25,0.25,0,1,1,1
 105,T07: Multi-hop Reasoning,How Natya veda is connected to other Vedas?,True,1,1,20.0,0.05,0.05,0,0,0,1
 123,T06: Composite,What are the symptoms of increased Vata? What to do to treat these symptoms ?,True,93,1,11.0,0.09090909090909091,0.09090909090909091,0,0,0,1

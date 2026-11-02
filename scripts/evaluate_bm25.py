@@ -91,14 +91,15 @@ def evaluate_complete_evidence(queries, run):
                      'group_count': len(groups), 'singleton_groups': sum(len(g) == 1 for g in groups),
                      **complete_scores([hit['id'] for hit in run[q['query_id']]], groups)})
     per = pd.DataFrame(rows)
-    columns = ['ce_mrr@20', 'ce_mrr@1000'] + [f'ce_recall@{k}' for k in CUTOFFS]
+    columns = ['CE_RR@20', 'CE_RR@1000'] + [f'CE_Recall@{k}' for k in CUTOFFS]
     summaries = []
     for scope in ['T06+T07', 'T06', 'T07']:
         frame = per if scope == 'T06+T07' else per[per.category.str.startswith(scope)]
         valid = frame[frame.evaluable]
         row = {'scope': scope, 'annotated_questions': len(frame), 'evaluable_questions': len(valid),
                'unevaluable_questions': len(frame)-len(valid)}
-        row.update({col: float(valid[col].mean()) if len(valid) else None for col in columns})
+        row.update({col.replace('CE_RR@', 'CE_MRR@'): float(valid[col].mean()) if len(valid) else None
+                    for col in columns})
         summaries.append(row)
     per.to_csv(OUT/'bm25_complete_evidence_per_question.csv', index=False, na_rep='NA')
     pd.DataFrame(summaries).to_csv(OUT/'bm25_complete_evidence_summary.csv', index=False)
