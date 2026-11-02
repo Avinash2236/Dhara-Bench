@@ -1,0 +1,44 @@
+Dhara-Bench repository licensing
+===============================
+
+This repository uses different terms for its original software and original
+annotations. It is not offered under a single licence covering every file.
+
+1. Original software: MIT
+
+   Original project software and configuration in scripts/ and associated
+   software instructions in README.md are licensed under the MIT License.
+   The full text is in LICENSE-CODE.
+
+   Third-party dependencies and any separately identified third-party code
+   retain their own licences; the MIT grant does not relicense them.
+
+2. Original annotations: CC BY 4.0
+
+   Contributor-authored question wording, category labels and definitions,
+   question-to-chunk relevance links, and conjugate evidence-group annotations
+   are licensed under Creative Commons Attribution 4.0 International.
+   This covers those original contributions in "Dhara Bench eval set.json",
+   the README's annotation descriptions, and copies of that annotation
+   content in metric_outputs/. The full text and attribution information are
+   in LICENSE-DATA.
+
+   The grant covers rights held by the Dhara-Bench contributors in their
+   original contributions. It does not claim exclusive rights in facts,
+   identifiers, or numerical scores, or grant rights in third-party text
+   reproduced within a question or another record.
+
+3. Source-derived material and other third-party content
+
+   Neither project licence applies to source-derived corpus text in
+   chunks.json or grants rights in underlying works, editions, translations,
+   commentaries, or third-party quotations elsewhere in the repository.
+   Those materials retain their applicable rights and terms. Public-domain
+   material remains in the public domain.
+
+   source_metadata.csv documents sources and URLs, not verified permissions.
+   THIRD_PARTY_NOTICES.md records the current provenance and rights-status
+   information. The repository's project licences do not establish a right
+   to redistribute material whose source permissions are unresolved.
+
+These repository licences do not select a licence for the associated paper.

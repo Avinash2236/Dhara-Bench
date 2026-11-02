@@ -12,10 +12,35 @@ Dhara Bench eval set.json        Questions, categories, and gold chunk IDs in re
 source_metadata.csv        Source descriptions and URLs for the 15 domains
 scripts/                   BM25 setup, retrieval, and metric scripts
 metric_outputs/            Rankings and per-question, category, and overall scores
+LICENSE                    Licence scopes and third-party exclusions
+LICENSE-CODE               MIT licence for original software
+LICENSE-DATA               CC BY 4.0 for original annotations
+THIRD_PARTY_NOTICES.md      Corpus source inventory and rights status
 README.md
 ```
 
 [Source metadata](source_metadata.csv) contains the supplied bibliographic descriptions and URLs. Multiple sources or URLs within a domain are separated by line breaks inside the CSV cell.
+
+## Licensing
+
+| Material | Licence |
+| --- | --- |
+| Original project code and configuration in `scripts/`, plus associated software instructions | [MIT](LICENSE-CODE) |
+| Original contributor-authored questions, category definitions and labels, relevance links, and conjugate evidence-group annotations | [CC BY 4.0](LICENSE-DATA) |
+| Source-derived corpus text and other third-party material | Applicable source-specific rights and terms; excluded from the project licence grants |
+
+[LICENSE](LICENSE) defines the scope of these grants. CC BY 4.0 applies to the
+original annotation contributions in `Dhara Bench eval set.json` and copies of
+that annotation content in the metric outputs. Credit the **Dhara-Bench
+contributors**, link to this repository and the licence, and identify changes
+when sharing covered annotations, as specified in [LICENSE-DATA](LICENSE-DATA).
+Third-party text quoted in questions retains its applicable rights and terms.
+
+**The source-derived text in `chunks.json` is not covered by the MIT or CC BY
+4.0 project grants.** [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) lists its
+sources and the rights information currently available. The source manifest
+does not establish redistribution permissions for those materials. The
+repository licences do not select a licence for the associated paper.
 
 ## Recalculate metrics
 
